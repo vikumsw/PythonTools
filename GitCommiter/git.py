@@ -2,29 +2,32 @@ import os
 import subprocess
 from Downloader import download
 from ExtactTags import extractTags
+from DateGenerator import genDates, read_dates
 
-folderName = 'HousePricesSolution_Beginner'
-fileTitle='house-prices-solution-beginner'
-comment = '"Changes to house-prices-solution-beginner Notebook"'
-repetition = 1
 
+def doGitStuff():
+    subprocess.check_call(['git'] + ['add', '*'])
+    try:
+        subprocess.check_call(['git'] + ['commit', '-m', comment])
+    except subprocess.CalledProcessError as error:
+        print(error)
+    dateComplete = '--date="' + dateList[d] + '"'
+    subprocess.check_call(['git'] + ['commit', '--amend', '--no-edit', dateComplete])
+
+
+folderName = 'GuideForComprehensiveDataExplorationInPython'
+fileTitle='guide-for-comprehensive-data-exploration-in-python'
+comment = '"Changes to guide-for-comprehensive-data-exploration-in-python Notebook"'
+repetition = 2
+genDates(2020, 2, 8)
 # Download tags
-
 ll = extractTags()
 noOfCommits = len(ll)
 #done
 
 
-def read_dates():
-    f = open("Dates.txt", "r")
-    for x in f:
-        dateList.append(x.rstrip())
-    f.close()
-
-
 dateList = list()
-read_dates()
-
+read_dates(dateList)
 download(fileTitle, ll)
 
 os.chdir(r"E:\Personal\Repositories\KaggleNotebooks")
@@ -41,8 +44,5 @@ for k in range(0, repetition):
               '"E:\Personal\Repositories\KaggleNotebooks\\' + folderName + '\\' + fileTitle + '.ipynb"'
         print(cmd)
         os.system(cmd)
-        subprocess.check_call(['git'] + ['add', '*'])
-        subprocess.check_call(['git'] + ['commit', '-m', comment])
-        dateComplete = '--date="' + dateList[d] + '"'
-        d = d+1
-        subprocess.check_call(['git'] + ['commit', '--amend', '--no-edit', dateComplete])
+        doGitStuff()
+        d = d + 1
