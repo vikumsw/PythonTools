@@ -1,15 +1,17 @@
 import os
 import subprocess
 from Downloader import download
+from ExtactTags import extractTags
 
-folderName = 'ExplainingRandomForestModelWithLime'
-fileTitle='explaining-random-forest-model-with-lime'
-comment = '"Changes to explaining-random-forest-model-with-lime Notebook"'
-noOfCommits = 3
-repetition = 2
+folderName = 'HousePricesSolution_Beginner'
+fileTitle='house-prices-solution-beginner'
+comment = '"Changes to house-prices-solution-beginner Notebook"'
+repetition = 1
 
 # Download tags
-ll = [17598324, 17608560, 17610515]
+
+ll = extractTags()
+noOfCommits = len(ll)
 #done
 
 
