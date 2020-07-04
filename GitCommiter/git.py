@@ -5,6 +5,25 @@ from ExtactTags import extractTags
 from DateGenerator import genDates, read_dates
 
 
+def getFolderName(title):
+    l = len(title)
+    folderName = ""
+    ConvertNextToUpper =False
+    for i, c in zip(range(l),title):
+        if i == 0:
+            folderName = folderName + c.upper()
+        elif c == '_' or c == '-':
+            ConvertNextToUpper = True
+        else:
+            if ConvertNextToUpper:
+                folderName = folderName + c.upper()
+                ConvertNextToUpper = False
+            else:
+                folderName = folderName + c
+    print(folderName)
+    return folderName
+
+
 def doGitStuff():
     subprocess.check_call(['git'] + ['add', '*'])
     try:
@@ -14,12 +33,11 @@ def doGitStuff():
     dateComplete = '--date="' + dateList[d] + '"'
     subprocess.check_call(['git'] + ['commit', '--amend', '--no-edit', dateComplete])
 
-
-folderName = 'GuideForComprehensiveDataExplorationInPython'
-fileTitle='guide-for-comprehensive-data-exploration-in-python'
-comment = '"Changes to guide-for-comprehensive-data-exploration-in-python Notebook"'
-repetition = 2
-genDates(2020, 2, 8)
+fileTitle='classification-with-scikit-learn'
+folderName = getFolderName(fileTitle)
+comment = '"Changes to classification-with-scikit-learn Notebook"'
+repetition = 1
+genDates(2020, 4, 15)
 # Download tags
 ll = extractTags()
 noOfCommits = len(ll)
