@@ -33,9 +33,9 @@ def doGitStuff():
     dateComplete = '--date="' + dateList[d] + '"'
     subprocess.check_call(['git'] + ['commit', '--amend', '--no-edit', dateComplete])
 
-fileTitle='classification-with-scikit-learn'
+fileTitle='regression-with-scikit-learn'
 folderName = getFolderName(fileTitle)
-comment = '"Changes to classification-with-scikit-learn Notebook"'
+comment = '"Changes to regression-with-scikit-learn Notebook"'
 repetition = 1
 genDates(2020, 4, 15)
 # Download tags

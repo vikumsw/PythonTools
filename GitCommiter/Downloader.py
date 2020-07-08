@@ -10,4 +10,3 @@ def download(file_title, l):
         filename = 'res/' + file_title + '(' + str(i) + ').ipynb'
         print(url, filename)
         open(filename, 'wb').write(r.content)
-
