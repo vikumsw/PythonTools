@@ -1,0 +1,2 @@
+"tech_MBase_API/4.20.0.t1@mtech_1/conan_testing", \
+    "database_MITOCI_API/4.20.0.t1@mtech_1/conan_testing"

@@ -1,0 +1,4 @@
+dependencies = [
+	 { "project": "mtech_1", "name": "tech_MBase_API"},
+	 { "project": "mtech_1", "name": "database_MITOCI_API"}
+]
