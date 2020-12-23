@@ -1,4 +1,5 @@
 import sqlalchemy as db
+import os
 
 
 CHOICE_SUMMARY = -1
@@ -46,19 +47,20 @@ def ConnectToDB():
     return conn, db_engine
 
 def displaySummary():
-    print('''Displaying Summary\n
-    | Entity \t| Instance count \t|''')
+    os.system('clear')
+    print('Displaying Summary\n| Entity \t| Instance count \t|\n','*'*40)
     global conn
     global db_engine
 
-    #s = db.select([Entities])
-
-    s = db.text("SELECT * FROM Entities")
+    s = db.text("SELECT Entity_Name, Instance_Table FROM Entities")
     result = conn.execute(s)
 
     for row in result:
-        print(type(result))
-        print (row)
+        print ('|',row[0],'\t|',end="")
+        print(' '*7,conn.execute(db.text("SELECT count(*) FROM {}".format(row[1]))).fetchone()[0],'\t\t|')
+
+    print("\n")
+    input("Press Enter to go to menu")
 
 if __name__ == "__main__":
     print("Starting System")
@@ -71,6 +73,7 @@ if __name__ == "__main__":
     while(True):
         #str = input("Enter your input: ")
         #print( "Received input is : ", str)
+        os.system('clear')
         menustr = """ ----------------------------\n
             Menu            \n
         {}. Summary
